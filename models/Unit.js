@@ -46,21 +46,39 @@ const UnitSchema = new mongoose.Schema( {
 		type: Number,
 	},
 	tenant: {
-		lastName: {
-			type: String
+		lastName: String,
+		firstName: String,
+		email: String,
+		phone: String,
+		rent: Number
+	},
+	accounting: {
+		purchasePrice: Number,
+		rent: Number,
+		fairMarketRent: Number,
+		annualPropertyTax: Number,
+		insurance: {
+			company: String,
+			agent: String,
+			phone: String,
+			email: String,
+			annualPremium: Number,
+			coverage: String
 		},
-		firstName: {
-			type: String
+		mortgage: {
+			bank: String,
+			principal: Number,
+			interest: Number,
+			term: Number,
+			paymentsMade: Number
 		},
-		email: {
-			type: String
-		},
-		phone: {
-			type: String
-		},
-		rent: {
-			type: Number
-		},
+		hoa: {
+			association: String,
+			agent: String,
+			phone: String,
+			email: String,
+			annualFee: Number
+		}
 	},
 	createdAt: {
 		type: Date,
