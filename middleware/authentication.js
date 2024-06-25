@@ -14,7 +14,7 @@ const authenticateUser = async (req, res, next) => {
 		// validate token
 		const payload = validateJWT({ token })
 		// make user obh on req obj to always know userID and isAdmin
-		req.user = { userID: payload.userID, isAdmin: payload.isAdmin, role: payload.role, account: payload.account }
+		req.user = { userID: payload.id, isAdmin: payload.isAdmin, role: payload.role, account: payload.account }
 		if (payload.isSystemAdmin) {
 			req.user.isSystemAdmin = payload.isSystemAdmin
 		}
@@ -26,9 +26,9 @@ const authenticateUser = async (req, res, next) => {
 
 // authorize if user isAdmin
 const authorizePermissions = (req, res, next) => {
-	/*if (!req.user.isAdmin) {
+	if (!req.user.role) {
 		throw new UnauthorizedError('Role not authorized')
-	}*/
+	}
 	next()
 }
 
