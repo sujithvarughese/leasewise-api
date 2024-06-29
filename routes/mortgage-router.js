@@ -1,8 +1,12 @@
 import express from 'express'
 const router = express.Router()
-import {getMortgages, createMortgage, editMortgage } from "../controllers/mortgages-controller.js"
+import {getMortgages, createMortgage, updateMortgage, deleteMortgage } from "../controllers/mortgages-controller.js"
 
-router.route("/:unit").post(createMortgage).patch(editMortgage)
-router.route("/").get(getMortgages)
+router.route("/")
+  .get(getMortgages)
+  .post(createMortgage)
+  .patch(updateMortgage)
+  .delete(deleteMortgage)
+
 
 export default router
