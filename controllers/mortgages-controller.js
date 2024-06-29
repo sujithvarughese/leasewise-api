@@ -11,11 +11,15 @@ const getMortgages = async (req, res) => {
 }
 
 const createMortgage = (req, res) => {
-  const unit = req.params.unit
-}
-
-const editMortgage = (req, res) => {
 
 }
 
-export { getMortgages, createMortgage, editMortgage }
+const updateMortgage = (req, res) => {
+
+}
+
+const deleteMortgage = (req, res) => {
+
+}
+
+export { getMortgages, createMortgage, updateMortgage, deleteMortgage }
