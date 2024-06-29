@@ -43,6 +43,24 @@ const PaymentSchema = new mongoose.Schema({
   datePaid: {
     type: Date,
   },
+  companyName: {
+    type: String,
+  },
+  companyAddress: {
+    type: String,
+  },
+  companyPhone: {
+    type: String
+  },
+  companyEmail: {
+    type: String
+  },
+  companyAgent: {
+    type: String
+  },
+  receipt: {
+    type: String
+  },
   createdAt: {
     type: Date,
     default: () => Date.now(),
