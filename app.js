@@ -13,6 +13,10 @@ import messageRouter from "./routes/message-router.js";
 import financeRouter from "./routes/finance-router.js";
 import registrationRouter from "./routes/registration-router.js"
 import accountRouter from "./routes/account-router.js"
+import mortgageRouter from './routes/mortgage-router.js'
+import paymentsRouter from './routes/payments-router.js'
+import rentsRouter from './routes/rents-router.js'
+
 // remaining middleware imports
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
@@ -53,9 +57,14 @@ app.get("/api/v1", (req, res) => {
 app.use("/api/v1/auth", authRouter);  // login, logout, register
 app.use("/api/v1/units", authenticateUser, unitRouter)
 app.use("/api/v1/messages", authenticateUser, messageRouter)
-app.use("/api/v1/finance", authenticateUser, financeRouter)
+app.use("/api/v1/rents", authenticateUser, rentsRouter)
+app.use("/api/v1/mortgage", authenticateUser, mortgageRouter)
+app.use("/api/v1/payments", authenticateUser, paymentsRouter)
 app.use("/api/v1/accounts", authenticateUser, authorizeSystemAdmin, accountRouter)
 app.use("/api/v1/registration", registrationRouter)
+
+app.use("/api/v1/finance", authenticateUser, financeRouter)
+
 app.use(notFound);
 app.use(errorHandler);
 
