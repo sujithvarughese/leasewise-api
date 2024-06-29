@@ -9,6 +9,10 @@ const RentPaymentSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "Unit"
   },
+  type: {
+    type: String,
+    enum: ["rent", "deposit", "other"]
+  },
   amount: {
     type: Number,
     required: true
