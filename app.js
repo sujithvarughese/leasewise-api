@@ -14,8 +14,8 @@ import financeRouter from "./routes/finance-router.js";
 import registrationRouter from "./routes/registration-router.js"
 import accountRouter from "./routes/account-router.js"
 import mortgageRouter from './routes/mortgage-router.js'
-import paymentsRouter from './routes/payments-router.js'
-import rentsRouter from './routes/rents-router.js'
+import expenseRouter from './routes/expense-router.js'
+import incomeRouter from './routes/income-router.js'
 
 // remaining middleware imports
 import morgan from "morgan";
@@ -57,9 +57,9 @@ app.get("/api/v1", (req, res) => {
 app.use("/api/v1/auth", authRouter);  // login, logout, register
 app.use("/api/v1/units", authenticateUser, unitRouter)
 app.use("/api/v1/messages", authenticateUser, messageRouter)
-app.use("/api/v1/rents", authenticateUser, rentsRouter)
+app.use("/api/v1/incomes", authenticateUser, incomeRouter)
 app.use("/api/v1/mortgage", authenticateUser, mortgageRouter)
-app.use("/api/v1/payments", authenticateUser, paymentsRouter)
+app.use("/api/v1/expenses", authenticateUser, expenseRouter)
 app.use("/api/v1/accounts", authenticateUser, authorizeSystemAdmin, accountRouter)
 app.use("/api/v1/registration", registrationRouter)
 
