@@ -21,7 +21,7 @@ const MortgageSchema = new mongoose.Schema({
   term: {
     type: Number,
   },
-  paymentsMade: {
+  numPaymentsMade: {
     type: Number
   },
   bank: {
