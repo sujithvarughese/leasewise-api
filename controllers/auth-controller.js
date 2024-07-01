@@ -70,7 +70,7 @@ const getUserList = async (req, res) => {
 	// format to display front end
 	const userList = users.map(user => {
 		return {
-			text: `${user.lastName}, ${user.firstName}`,
+			label: `${user.lastName}, ${user.firstName}`,
 			value: user.id
 		}
 
@@ -81,7 +81,7 @@ const getUserList = async (req, res) => {
 const getAdminInfo = async (req, res) => {
 	const admin = await User.findOne({ isAdmin: true })
 	const adminInfo = [{
-		text: "Admin",
+		label: "Admin",
 		value: admin.id
 	}]
 	res.status(StatusCodes.OK).json({ adminInfo })
