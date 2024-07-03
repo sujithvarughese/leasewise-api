@@ -5,7 +5,16 @@ const getExpenses = async (req, res) => {
   const expenses = await Expense.find()
   res.status(StatusCodes.OK)
     .json({
-      msg: "Payments retrieved",
+      msg: "Expenses retrieved",
+      expenses: expenses
+    })
+}
+
+const getUnitExpenses = async (req, res) => {
+  const expenses = await Expense.find({ unit: req.params.unit })
+  res.status(StatusCodes.OK)
+    .json({
+      msg: "Expense retrieved",
       expenses: expenses
     })
 }
@@ -25,4 +34,4 @@ const deleteExpense = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'Expense deleted.' })
 }
 
-export { getExpenses, createExpense, updateExpense, deleteExpense }
+export { getExpenses, getUnitExpenses, createExpense, updateExpense, deleteExpense }

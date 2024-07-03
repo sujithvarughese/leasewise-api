@@ -1,12 +1,22 @@
 import Income from '../models/Income.js'
 import { StatusCodes } from 'http-status-codes'
 import Expense from '../models/Expense.js'
+import Mortgage from '../models/Mortgage.js'
 
 const getIncomes = async (req, res) => {
   const incomes = await Income.find()
   res.status(StatusCodes.OK)
     .json({
       msg: "Income retrieved",
+      incomes: incomes
+    })
+}
+
+const getUnitIncomes = async (req, res) => {
+  const incomes = await Income.find({ unit: req.params.unit })
+  res.status(StatusCodes.OK)
+    .json({
+      msg: "Incomes successfully retrieved",
       incomes: incomes
     })
 }
@@ -26,5 +36,5 @@ const deleteIncome = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'Income deleted.' })
 }
 
-export { getIncomes, createIncome, updateIncome, deleteIncome }
+export { getIncomes, getUnitIncomes, createIncome, updateIncome, deleteIncome }
 

@@ -6,6 +6,7 @@ import { BadRequestError, NotFoundError } from "../errors/index.js"
 const createMessage = async (req, res) => {
 	// { sender, recipient, subject, body } = req.body
 	// validate just in case (schema already validates)
+	console.log(req.body)
 	if (!req.body.recipient) {
 		throw new BadRequestError('please provide recipient')
 	}
@@ -19,17 +20,14 @@ const createMessage = async (req, res) => {
 	// create new message using Message model
 	const message = await Message.create(req.body)
 
-	res.status(StatusCodes.CREATED)
-		.json({
-			msg: "success",
-			message: message
-		})
+	res.status(StatusCodes.CREATED).json({ message })
 }
 
 const getMessages = async (req, res) => {
 	// inbox will have messages where latest message sender or recipient is user
 	const messages = await Message
-		.find().or([{ recipient: req.user.userID }, { sender: req.user.userID }])
+		.find({ headNode: true })
+		.or([{ recipient: req.user.userID }, { sender: req.user.userID }])
 		.sort({ date: -1 })
 		.populate({path: "sender recipient", select: "lastName firstName _id"})
 	// outbox list of all messages where sender is user
@@ -42,13 +40,14 @@ const getMessages = async (req, res) => {
 
 
 const markMessageRead = async (req, res) => {
-	await Message.findByIdAndUpdate(req.body, { read: true })
+	await Message.findByIdAndUpdate(req.body._id, { read: true })
 	res.status(StatusCodes.OK)
 		.json({ msg: 'message read status update success'})
 }
 
 const markMessageUnread = async (req, res) => {
-	await Message.findByIdAndUpdate(req.body, { read: false })
+
+	await Message.findByIdAndUpdate(req.body._id, { read: false })
 	res.status(StatusCodes.OK)
 		.json({ msg: 'message read status update success'})
 }
@@ -77,15 +76,15 @@ const getPreviousMessages = async (req, res) => {
 	// { message } = req.params
 	const previousMessages = []
 	// retrieve current message
-	let currentMessage = await Message.findById(req.params.message)
+	let currentMessage = await Message
+		.findById(req.params.message)
+		.populate({path: "sender recipient", select: "lastName firstName _id"})
 	// if current message has previous message, add to array and set current message as previous message
-
+	previousMessages.push(currentMessage)
 	while (currentMessage.previousMessage) {
 		const previousMessage = await Message
-			.findById(currentMessage.previousMessage)
+			.findById(currentMessage.previousMessage._id)
 			.populate({path: "sender recipient", select: "lastName firstName _id"})
-		console.log("previous msg: ")
-		console.log(previousMessage)
 		previousMessages.push(previousMessage)
 		currentMessage = previousMessage
 	}
@@ -98,7 +97,11 @@ const getPreviousMessages = async (req, res) => {
 
 const deleteMessage = async (req, res) => {
 	//  { message } = req.body
-	await Message.findByIdAndDelete(req.body)
+	console.log(req.params)
+	const messageToDelete = await Message.findByIdAndDelete(req.params.message)
+	await Message.findByIdAndUpdate(messageToDelete.previousMessage._id, { headNode: true })
+	await Message.findByIdAndDelete(req.params.message)
+
 	res.status(StatusCodes.OK).json({ msg: 'message delete success'})
 }
 

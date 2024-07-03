@@ -1,30 +1,33 @@
 import mongoose from 'mongoose'
 
-const RentPaymentSchema = new mongoose.Schema({
+const IncomeSchema = new mongoose.Schema({
   account: {
     type: mongoose.Types.ObjectId,
     ref: "Account"
   },
   unit: {
     type: mongoose.Types.ObjectId,
-    ref: "Unit"
+    ref: "Unit",
+    required: true,
   },
-  type: {
+  category: {
     type: String,
-    enum: ["rent", "deposit", "other"]
+    enum: ["rent", "deposit", "other"],
+    required: true,
   },
   amount: {
     type: Number,
     required: true
   },
   balance: {
-    type: Number
+    type: Number,
+    required: true,
   },
   datePaid: {
     type: Date,
     required: true
   },
-  paidBy: {
+  paymentMethod: {
     type: String,
   },
   notes: {
@@ -32,4 +35,4 @@ const RentPaymentSchema = new mongoose.Schema({
   }
 })
 
-export default mongoose.model("RentPayment", RentPaymentSchema)
+export default mongoose.model("Income", IncomeSchema)

@@ -43,13 +43,13 @@ const login = async (req, res) => {
 		message: "user logged in success",
 		data: {
 			account: user.account,
-			role: user.role,
 			user: {
 				id: user.id,
 				lastName: user.lastName,
 				firstName: user.firstName,
 				email: user.email,
-				phone: user.phone
+				phone: user.phone,
+				role: user.role
 			}
 		},
 	});

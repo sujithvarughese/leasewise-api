@@ -1,19 +1,9 @@
 import mongoose from "mongoose"
 
-const PaymentSchema = new mongoose.Schema({
-  account: {
-    type: mongoose.Types.ObjectId,
-    ref: "Account",
-    required: true
-  },
+const ExpenseSchema = new mongoose.Schema({
   unit: {
-    type: [mongoose.Types.ObjectId],
+    type: mongoose.Types.ObjectId,
     ref: "Unit",
-    required: true
-  },
-  type: {
-    type: String,
-    enum: ["recurring", "onetime"],
     required: true
   },
   category: {
@@ -23,10 +13,6 @@ const PaymentSchema = new mongoose.Schema({
   },
   description: {
     type: String
-  },
-  payTo: {
-    type: String,
-    required: true
   },
   amount: {
     type: Number,
@@ -40,8 +26,8 @@ const PaymentSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  datePaid: {
-    type: Date,
+  paymentMethod: {
+    type: String
   },
   companyName: {
     type: String,
@@ -72,4 +58,4 @@ const PaymentSchema = new mongoose.Schema({
   }
 }, { timestamps: true })
 
-export default mongoose.model("Payment", PaymentSchema)
+export default mongoose.model("Expense", ExpenseSchema)

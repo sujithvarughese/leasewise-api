@@ -58,7 +58,7 @@ app.use("/api/v1/auth", authRouter);  // login, logout, register
 app.use("/api/v1/units", authenticateUser, unitRouter)
 app.use("/api/v1/messages", authenticateUser, messageRouter)
 app.use("/api/v1/incomes", authenticateUser, incomeRouter)
-app.use("/api/v1/mortgage", authenticateUser, mortgageRouter)
+app.use("/api/v1/mortgages", authenticateUser, mortgageRouter)
 app.use("/api/v1/expenses", authenticateUser, expenseRouter)
 app.use("/api/v1/accounts", authenticateUser, authorizeSystemAdmin, accountRouter)
 app.use("/api/v1/registration", registrationRouter)

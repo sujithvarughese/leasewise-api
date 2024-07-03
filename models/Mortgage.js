@@ -9,23 +9,29 @@ const MortgageSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "Unit"
   },
+  bank: {
+    type: String,
+    required: true,
+  },
   purchasePrice: {
-    type: Number
+    type: Number,
+    required: true,
   },
   principal: {
-    type: Number
+    type: Number,
+    required: true,
   },
   interest: {
-    type: Number
+    type: Number,
+    required: true,
   },
   term: {
     type: Number,
+    required: true,
   },
   numPaymentsMade: {
-    type: Number
-  },
-  bank: {
-    type: String
+    type: Number,
+    required: true,
   },
   createdAt: {
     type: Date,

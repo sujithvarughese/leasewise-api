@@ -1,7 +1,8 @@
 import express from 'express'
 const router = express.Router()
-import {getIncomes, createIncome, updateIncome, deleteIncome} from "../controllers/income-controller.js"
+import {getIncomes, getUnitIncomes, createIncome, updateIncome, deleteIncome} from "../controllers/income-controller.js"
 
+router.route("/:unit").get(getUnitIncomes)
 router.route("/")
   .get(getIncomes)
   .post(createIncome)
