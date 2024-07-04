@@ -16,6 +16,7 @@ import accountRouter from "./routes/account-router.js"
 import mortgageRouter from './routes/mortgage-router.js'
 import expenseRouter from './routes/expense-router.js'
 import incomeRouter from './routes/income-router.js'
+import researchRouter from './routes/research-router.js'
 
 // remaining middleware imports
 import morgan from "morgan";
@@ -59,6 +60,7 @@ app.use("/api/v1/units", authenticateUser, unitRouter)
 app.use("/api/v1/messages", authenticateUser, messageRouter)
 app.use("/api/v1/incomes", authenticateUser, incomeRouter)
 app.use("/api/v1/mortgages", authenticateUser, mortgageRouter)
+app.use("/api/v1/research", authenticateUser, researchRouter)
 app.use("/api/v1/expenses", authenticateUser, expenseRouter)
 app.use("/api/v1/accounts", authenticateUser, authorizeSystemAdmin, accountRouter)
 app.use("/api/v1/registration", registrationRouter)
