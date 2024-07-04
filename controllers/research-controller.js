@@ -1,8 +1,18 @@
 import { StatusCodes } from 'http-status-codes'
 import axios from 'axios'
 
+const connectRealtyAPI = axios.create({
+  baseURL: "https://realty-in-us.p.rapidapi.com/properties/v3",
+  headers: {
+    'Content-Type': 'application/json',
+    'x-rapidapi-host': process.env['X-RAPIDAPI-HOST'],
+    'x-rapidapi-key': process.env['X-RAPIDAPI-KEY']
+  }
+})
+
 const baseUrl = "https://realty-in-us.p.rapidapi.com/properties/v3"
 const listingsUrl = "/list"
+const listingDetailsUrl = "/detail"
 const getListingsZipCode = async (req, res) => {
   const { zipCode } = req.body
   console.log(zipCode)
@@ -27,25 +37,48 @@ const getListingsZipCode = async (req, res) => {
   const { total, results } = data
   const homes = results.map(result => {
     return {
+      propertyId: result.property_id,
       address: `${result.location.address.street_number} ${result.location.address.street_name} ${result.location.address.street_suffix}`,
       city: result.location.address.city,
       state: result.location.address.state,
       zipCode: result.location.address.postal_code,
       streetViewImage: result.location.street_view_url,
-      primaryImage: result.primary_photo.href,
+      primaryImage: result.primary_photo?.href,
       bedrooms: result.description.beds,
       bathrooms: result.description.baths,
       listPrice: result.list_price,
-      listDate: result.list_date,
       estimate: result.estimate?.estimate,
-      lastSoldPrice: result.last_sold_price,
-      lastSoldDate: result.last_sold_date,
-      link: result.href
+
     }
   })
 
-  res.status(StatusCodes.OK).json({ data: { total, homes } })
+  res.status(StatusCodes.OK).json({ total, homes })
+}
+
+const getListingDetails = async (req, res) => {
+  const { id } = req.params
+
+  const response = await connectRealtyAPI(`/${id}`)
+
+
+  const { home: results } = response.data.data
+
+  const home = results.map(result => {
+    return {
+      propertyId: result.property_id,
+      description: result.description.text,
+      yearBuilt: result.description.year_built,
+      photos: result.photos.map(photo => photo.href),
+      listDate: result.list_date,
+      lastSoldPrice: result.last_sold_price,
+      lastSoldDate: result.last_sold_date,
+      link: result.href,
+    }
+  })
+
+  res.status(StatusCodes.OK).json({ home })
+
 }
 
 
-export { getListingsZipCode }
+export { getListingsZipCode, getListingDetails }
