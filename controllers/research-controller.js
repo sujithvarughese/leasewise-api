@@ -26,7 +26,10 @@ const getListingsZipCode = async (req, res) => {
   const { home_search: data } = response.data.data
   // total number of results, array of results
   const { total, results } = data
-  const homes = results.map(result => {
+  const homes1 = results.filter(result => result.location.address.street_name !== null)
+
+
+  const homes = homes1.map(result => {
     return {
       propertyId: result.property_id,
       address: `${result.location.address.street_number} ${result.location.address.street_name} ${result.location.address.street_suffix}`,
