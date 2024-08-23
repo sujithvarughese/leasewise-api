@@ -56,12 +56,12 @@ app.get("/api/v1", (req, res) => {
 })
 
 app.use("/api/v1/auth", authRouter);  // login, logout, register
-app.use("/api/v1/units", authenticateUser, unitRouter)
+app.use("/api/v1/units", authenticateUser, authorizePermissions, unitRouter)
 app.use("/api/v1/messages", authenticateUser, messageRouter)
-app.use("/api/v1/incomes", authenticateUser, incomeRouter)
-app.use("/api/v1/mortgages", authenticateUser, mortgageRouter)
-app.use("/api/v1/research", authenticateUser, researchRouter)
-app.use("/api/v1/expenses", authenticateUser, expenseRouter)
+app.use("/api/v1/incomes", authenticateUser, authorizePermissions, incomeRouter)
+app.use("/api/v1/mortgages", authenticateUser, authorizePermissions, mortgageRouter)
+app.use("/api/v1/research", authenticateUser, authorizePermissions, researchRouter)
+app.use("/api/v1/expenses", authenticateUser, authorizePermissions, expenseRouter)
 app.use("/api/v1/accounts", authenticateUser, authorizeSystemAdmin, accountRouter)
 app.use("/api/v1/registration", registrationRouter)
 
