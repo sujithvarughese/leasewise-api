@@ -19,8 +19,8 @@ const getListingsZipCode = async (req, res) => {
   const response = await axios.post(`${baseUrl}${listingsUrl}`, JSON.stringify(requestConfig), {
     headers: {
       'Content-Type': 'application/json',
-      'x-rapidapi-host': process.env['X-RAPIDAPI-HOST'],
-      'x-rapidapi-key': process.env['X-RAPIDAPI-KEY']
+      'x-rapidapi-host': "realty-in-us.p.rapidapi.com",
+      'x-rapidapi-key': "0435c9e626msh69ef4c61d151b29p143368jsn3b1769d8ff96"
     }
   })
   const { home_search: data } = response.data.data
