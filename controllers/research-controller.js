@@ -4,6 +4,7 @@ import axios from 'axios'
 const baseUrl = "https://realty-in-us.p.rapidapi.com/properties/v3"
 const listingsUrl = "/list"
 const listingDetailsUrl = "/detail?property_id="
+const photosUrl = "/get-photos?property_id="
 
 const getListingsZipCode = async (req, res) => {
   const { zipCode } = req.body
