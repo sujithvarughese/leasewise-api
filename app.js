@@ -17,6 +17,7 @@ import mortgageRouter from './routes/mortgage-router.js'
 import expenseRouter from './routes/expense-router.js'
 import incomeRouter from './routes/income-router.js'
 import researchRouter from './routes/research-router.js'
+import newsRouter from './routes/news-router.js'
 
 // remaining middleware imports
 import morgan from "morgan";
@@ -64,7 +65,7 @@ app.use("/api/v1/research", authenticateUser, authorizePermissions, researchRout
 app.use("/api/v1/expenses", authenticateUser, authorizePermissions, expenseRouter)
 app.use("/api/v1/accounts", authenticateUser, authorizeSystemAdmin, accountRouter)
 app.use("/api/v1/registration", registrationRouter)
-
+app.use("/api/v1/news", authenticateUser, authorizePermissions, newsRouter)
 app.use("/api/v1/finance", authenticateUser, financeRouter)
 
 app.use(notFound);
