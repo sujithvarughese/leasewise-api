@@ -57,7 +57,7 @@ app.get("/api/v1", (req, res) => {
 })
 
 app.use("/api/v1/auth", authRouter);  // login, logout, register
-app.use("/api/v1/units", authenticateUser, authorizePermissions, unitRouter)
+app.use("/api/v1/units", authenticateUser, unitRouter)
 app.use("/api/v1/messages", authenticateUser, messageRouter)
 app.use("/api/v1/incomes", authenticateUser, authorizePermissions, incomeRouter)
 app.use("/api/v1/mortgages", authenticateUser, authorizePermissions, mortgageRouter)
