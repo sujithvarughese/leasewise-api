@@ -83,9 +83,7 @@ UserSchema.pre("save", async function () {
 UserSchema.methods.updatePassword = async function (){
 	try {
 		const salt = await bcrypt.genSalt(10);
-		console.log(this.password)
 		this.password = await bcrypt.hash(this.password, salt);
-		console.log(this.password)
 		this.save()
 		return true
 	} catch (error) {

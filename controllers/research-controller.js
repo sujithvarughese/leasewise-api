@@ -8,8 +8,6 @@ const photosUrl = "/get-photos?property_id="
 
 const getListingsZipCode = async (req, res) => {
   const { zipCode } = req.body
-  console.log(zipCode)
-
   const requestConfig = {
     limit: 200,
     offset :0,
@@ -17,7 +15,6 @@ const getListingsZipCode = async (req, res) => {
     status: ["for_sale","ready_to_build"],
     sort: {"direction": "desc", "field": "list_date"}
   }
-
   const response = await axios.post(`${baseUrl}${listingsUrl}`, JSON.stringify(requestConfig), {
     headers: {
       'Content-Type': 'application/json',
@@ -29,7 +26,6 @@ const getListingsZipCode = async (req, res) => {
   // total number of results, array of results
   const { total, results } = data
   const homes1 = results.filter(result => result.location.address.street_name !== null)
-
 
   const homes = homes1.map(result => {
     return {
@@ -44,17 +40,14 @@ const getListingsZipCode = async (req, res) => {
       bathrooms: result.description.baths,
       listPrice: result.list_price,
       estimate: result.estimate?.estimate,
-
     }
   })
-
   res.status(StatusCodes.OK).json({ total, homes })
 }
 
 const getListingDetails = async (req, res) => {
   const { id } = req.params
   const url = `${baseUrl}${listingDetailsUrl}${id}`
-  console.log(url)
   const response = await axios.get(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -62,9 +55,7 @@ const getListingDetails = async (req, res) => {
       'x-rapidapi-key': process.env['X_RAPIDAPI_KEY']
     }
   })
-
   const { home: result } = response.data.data
-
   const home = {
     propertyId: result.property_id,
     description: result.description.text,
@@ -75,12 +66,7 @@ const getListingDetails = async (req, res) => {
     lastSoldDate: result.last_sold_date,
     link: result.href,
   }
-
-
-  console.log(home)
   res.status(StatusCodes.OK).json({ home })
-
 }
-
 
 export { getListingsZipCode, getListingDetails }
