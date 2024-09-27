@@ -5,10 +5,9 @@ When I was working in real estate, I realized how few resources there were for s
 
 # Application Details
 
-In this app, properties are organized with the important details summarized on the dashboard. The dashboard contains a list of recent expenses and deposits, along with a pie wish a breakdown of expenses. (Pie chart figures are automatically calculated when a new expense is input). 
 
 ### Dashboard
-The top of the dashboard contains a section where the user can research up-to-date data about the real estate market with the following features: 
+The dashboard contains a list of recent expenses and deposits, along with a pie chart representing a breakdown of expenses. (Pie chart figures are automatically calculated when a new expense is input). The top of the dashboard contains a section where the user can research up-to-date data about the real estate market with the following features: 
 * The latest real estate related news articles are displayed as a scrollable list on the top (fetched from newsapi.org).
 * A full MLS search section where the user can enter a zip code to retrieve all current listings (from realty-in-us api). Each listing can be selected to show listing details including images, last sold for price and date, build date, a brief summary, google street view, and a link to the listing on realtor.com where the user can find additional information.
 * A section that retrieves fair market rental values from anywhere in the United States that the user can filter by state, county, and zip code (api from HUD.gov)
