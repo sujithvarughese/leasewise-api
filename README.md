@@ -11,7 +11,7 @@ In this app, properties are organized with the important details summarized on t
 The top of the dashboard contains a section where the user can research up-to-date data about the real estate market with the following features: 
 * The latest real estate related news articles are displayed as a scrollable list on the top (fetched from newsapi.org).
 * A full MLS search section where the user can enter a zip code to retrieve all current listings (from realty-in-us api). Each listing can be selected to show listing details including images, last sold for price and date, build date, a brief summary, google street view, and a link to the listing on realtor.com where the user can find additional information.
-* A section that retries fair market rental values from anywhere in the United States, that the user can filter by state, county, and zip code (api from HUD.gov)
+* A section that retrieves fair market rental values from anywhere in the United States that the user can filter by state, county, and zip code (api from HUD.gov)
 
 ### Units
 The Units tab shows an overview of all units that can be displayed in gallery or list format. A search functionality allows the user to search any part of the unit address to filter the list as desired. A unit can then be selected to show further details including an enlarged image, tenant information, and separate tabs for income, expenses, and mortgage information. Here, the user can edit user and tenant information and add income/expense/mortgage details.
@@ -23,7 +23,7 @@ Managers can create rent receipts for tenants for proof of rent payment, while a
 
 ### Messages
 
-This section contains full-featured messaging where tenants and property managers can communicate. An address book is retrieved for property managers to send a message to any tenant, while tenants only have access to directly message the manager. Messages are organized in a thread-like conversation form, with the ability to flag and delete each message. For optimized retrieval from the database, messages are organized in a linked-list format where the most recent message is the headNode. Only headNode messages are displayed in the conversation list. When a user selects a message, the list is traversed to also display previous messages.
+This section contains full-featured messaging where tenants and property managers can communicate. An address book is retrieved for property managers to send messages to any tenant, while tenants only have access to directly message the manager. Messages are organized in a thread-like conversation form, with the ability to flag and delete each message. For optimized retrieval from the database, messages are organized in a linked-list format where the most recent message is the headNode. Only headNode messages are displayed in the conversation list. When a user selects a message, the list is traversed to display all previous messages.
 
 
 # Models
