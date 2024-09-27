@@ -37,7 +37,61 @@ I created a Messages section where tenants and property managers can communicate
 * Random code generated which must be given to user in order to login and set up user account
 * User must verify registration using code to create User instance
 
+**Unit**
+* account (model)
+* user (model)
+* finance (model)
+* unitNumber
+* address
+* addressLine2
+* city
+* state
+* zip
+* image
+* bedrooms
+* bathrooms
 
+**Finance**
+* unit (model)
+* purchasePrice
+* mortgage
+  * principal
+  * interest
+  * term
+  * bank
+  * paymentsMade
+* insurance
+  * company
+  * agent
+  * phone
+  * email
+  * coverage
+  * annualPremium
+* hoa
+  * company
+  * agent
+  * phone
+  * email
+  * annualFee
+* annualPropertyTax
+
+**Expense**
+* unit (model)
+* type
+* category ["tax", "insurance", "hoa", "maintenance", "repairs", "advertising", utilities", "other"]
+* amount
+* balance
+* dateDue
+* companyName
+* companyAddress
+* companyPhone
+
+**Income**
+* unit (model)
+* category ["rent", "deposit", "other"]
+* amount
+* balance
+* datePaid
 
 System admin permissions
 1. Create Account Admin
