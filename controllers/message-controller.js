@@ -57,7 +57,9 @@ const toggleFlag = async (req,res) => {
 	const message = await Message.findById(req.body)
 	await Message.findByIdAndUpdate(req.body, { flag: !message.flag})
 	res.status(StatusCodes.OK)
-		.json({ msg: 'message flag update success'})
+		.json({
+			msg: 'message flag update success',
+		})
 }
 
 const getMessage = async (req, res) => {
