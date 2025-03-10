@@ -31,7 +31,15 @@ const app = express()
 dotenv.config();
 
 app.use(cors({
-	origin: ["http://localhost:5173", "https://lease-wise.com", "https://wwww.lease-wise.com", "https://sgs-properties.com", "https://realty-solutions.netlify.app", "https://leasewise.netlify.app"],
+	origin: [
+		"http://localhost:5173",
+		"https://lease-wise.com",
+		"https://wwww.lease-wise.com",
+		"https://sgs-properties.com",
+		"https://realty-solutions.netlify.app",
+		"https://leasewise.netlify.app",
+		"https://leasewise-client-2025.pages.dev"
+	],
 	credentials: true
 }));
 
