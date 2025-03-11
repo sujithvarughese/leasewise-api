@@ -67,16 +67,16 @@ app.get("/api/v1", (req, res) => {
 })
 
 app.use("/api/v1/auth", authRouter);  // login, logout, register
-app.use("/api/v1/units", unitRouter)
-app.use("/api/v1/messages", messageRouter)
-app.use("/api/v1/incomes", incomeRouter)
-app.use("/api/v1/mortgages", mortgageRouter)
-app.use("/api/v1/research", researchRouter)
-app.use("/api/v1/expenses", expenseRouter)
-app.use("/api/v1/accounts", accountRouter)
+app.use("/api/v1/units", authenticateUser, unitRouter)
+app.use("/api/v1/messages", authenticateUser, messageRouter)
+app.use("/api/v1/incomes", authenticateUser, authorizePermissions, incomeRouter)
+app.use("/api/v1/mortgages", authenticateUser, authorizePermissions, mortgageRouter)
+app.use("/api/v1/research", authenticateUser, authorizePermissions, researchRouter)
+app.use("/api/v1/expenses", authenticateUser, authorizePermissions, expenseRouter)
+app.use("/api/v1/accounts", authenticateUser, authorizeSystemAdmin, accountRouter)
 app.use("/api/v1/registration", registrationRouter)
-app.use("/api/v1/news", newsRouter)
-app.use("/api/v1/finance", financeRouter)
+app.use("/api/v1/news", authenticateUser, authorizePermissions, newsRouter)
+app.use("/api/v1/finance", authenticateUser, financeRouter)
 
 app.use(notFound);
 app.use(errorHandler);
