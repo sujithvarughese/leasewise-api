@@ -38,7 +38,8 @@ app.use(cors({
 		"https://sgs-properties.com",
 		"https://realty-solutions.netlify.app",
 		"https://leasewise.netlify.app",
-		"https://leasewise-client-2025.pages.dev"
+		"https://leasewise-client-2025.pages.dev",
+		"https://leasewise-client-2025-1.onrender.com"
 	],
 	credentials: true
 }));
