@@ -15,9 +15,11 @@ const authenticateUser = async (req, res, next) => {
 		const payload = validateJWT({ token })
 		// make user obh on req obj to always know userID and isAdmin
 		req.user = { userID: payload.id, isAdmin: payload.isAdmin, role: payload.role, account: payload.account }
+		/*
 		if (payload.isSystemAdmin) {
 			req.user.isSystemAdmin = payload.isSystemAdmin
 		}
+		 */
 		next()
 	} catch (error) {
 		throw new UnauthenticatedError('token not verified')
